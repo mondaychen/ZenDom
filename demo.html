@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<div id="test"></div>
+
+	<script type="text/javascript" src="ZenDom.js"></script>
+	<script type="text/javascript">
+		document.getElementById('test').appendChild(ZenDom.dom('div#test_ID1>(div.class1>img#pic1[src:*./images/1.jpg*][title:*名 字*][width:100px][height:200px]+h2.class_m)+(div.class2>ul>li.now[tab1] + li[tab2] + li[tab3])'));
+		ZenDom.dom('divv[hahhaha]>()',function(ta){
+			document.getElementById('test').appendChild(ta);
+		});
+
+	</script>
+
+</body>
+</html>
