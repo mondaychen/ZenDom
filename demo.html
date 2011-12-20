@@ -105,7 +105,7 @@ ZenDom.dom("div[*A jQuery object!*]").appendTo($('#sample4')).hide();</pre>
 			<p>That's it. Any bug or recommendation, please contact me: monday.chen#gmail.com </p>
 		</div>
 	</div>
-	<script type="text/javascript" src="jquery-1.5.1.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script type="text/javascript" src="ZenDom.js"></script>
 	<script type="text/javascript">
 		document.getElementById('sample1').appendChild(
@@ -115,7 +115,7 @@ ZenDom.dom("div[*A jQuery object!*]").appendTo($('#sample4')).hide();</pre>
 			ZenDom.dom("a[title,*Google Search*][href,*http://www.google.com*][target:_blank][Google]")
 		);
 		document.getElementById('sample3').appendChild(
-			ZenDom.dom("div>(div.margin_left_20>(p>b[*Hey!*])+p[*This is p.*])+div>b[**END**]")
+			ZenDom.dom("div>(div.margin_left_20>(p>b[*Hey!*])+p[*This is p.*])+div>b[ **END** ]")
 		);
 
 		ZenDom.config({"jQuery":true});

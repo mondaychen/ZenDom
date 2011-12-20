@@ -17,10 +17,10 @@ var ZenDom = {};
         var reg;
 
         //星号(*)
-        reg = /\*.*?\*\]/;
+        reg = /\*.*?\*\s*\]/;
         for(var i = 0; reg.exec(exp); i++)
         {
-            encode[i] = reg.exec(exp)[0].replace(/\]$/,"");
+            encode[i] = reg.exec(exp)[0].replace(/\s*\]$/,"");
             exp = exp.replace(encode[i],"encode"+i);
         }
 
