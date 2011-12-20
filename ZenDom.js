@@ -17,10 +17,10 @@ var ZenDom = {};
         var reg;
 
         //星号(*)
-        reg = /\*[^\*]*?\*/i;
+        reg = /\*.*?\*\]/;
         for(var i = 0; reg.exec(exp); i++)
         {
-            encode[i] = reg.exec(exp)[0];
+            encode[i] = reg.exec(exp)[0].replace(/\]$/,"");
             exp = exp.replace(encode[i],"encode"+i);
         }
 
@@ -125,10 +125,10 @@ var ZenDom = {};
 
             //替换星号内容
             if(val[0]&&val[0].match(/encode\d*/)){
-                val[0] = encode[val[0].replace(/encode/,"")].replace(/\*/g,"");
+                val[0] = encode[val[0].replace(/encode/,"")].replace(/\*$/,"").replace(/^\*/,"");
             }
             if(val[1]&&val[1].match(/encode\d*/)){
-                val[1] = encode[val[1].replace(/encode/,"")].replace(/\*/g,"");
+                val[1] = encode[val[1].replace(/encode/,"")].replace(/\*$/,"").replace(/^\*/,"");
             }
 
             if(val[0]&&val[1]){

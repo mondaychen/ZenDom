@@ -23,6 +23,14 @@
 		#container{width:800px; margin:0 auto;}
 		li.now{font-weight:bold;}
 		.margin_left_20{margin-left:20px;}
+		#sample1,#sample2,#sample3,#sample4,#sample5,#sample6{
+			border: 1px solid #DDD;
+			-webkit-box-shadow: rgba(0,0,0,0.07) 0 1px 2px inset;
+			-webkit-border-radius: 3px;
+			-moz-border-radius: 3px;
+			border-radius: 3px;
+			padding:5px
+		}
 	</style>
 </head>
 <body>
@@ -35,34 +43,69 @@
 			<p>Then you can just type like this:</p>
 			<pre>
 document.getElementById('sample1').appendChild(
-	ZenDom.dom("ul#nav > (li.now[tab1]) + li[tab2] + li[tab3]")
+	ZenDom.dom("ul#nav > li.now[tab1] + li[tab2] + li[tab3]")
 );</pre>
-		</div>
-		<div id="sample1">
 			<p>And you get:</p>
 		</div>
+		<div id="sample1">
+		</div>
 		<div id="des2">
-			<p><code>#id</code> , <code>.class</code> and <code>&gt;</code> works just like zen-coding.<br /><code>[content]</code> is used here as text node provider and we can use <code>[attribute,value]</code> or <code>[attribute:value]</code> to set attibutes:</p>
+			<p><code>#id</code> , <code>.class</code>, <code>+</code> and <code>&gt;</code> works just like zen-coding.<br /><code>[content]</code> is used here as text node provider and we can use <code>[attribute,value]</code> or <code>[attribute:value]</code> to set attibutes:</p>
 			<pre>
 document.getElementById('sample2').appendChild(
 	ZenDom.dom("a[title,*Google Search*][href,*http://www.google.com*][target:_blank][Google]")
 );</pre>
+			<p>And you get:</p>
 		</div>
-		<div id="sample2"><p>And you get:</p></div>
+		<div id="sample2"></div>
 		<div id="des3">
-			<p>*something* is used when some certain value contains special chars like <code>:</code>, <code>&nbsp;</code>, <code>,</code>, <code>#</code>, <code>.</code> etc. Thus it is highly recommended when you put text or link in the string.</p>
+			<p>*something* is used when some certain value contains special chars like <code>:</code> <code>&nbsp;</code> <code>,</code> <code>#</code> <code>.</code> etc. Thus it is highly recommended when you put text or link in the string.</p>
 			<p>And the parentheses brackets work as you expected:</p>
 			<pre>
 document.getElementById('sample2').appendChild(
-	ZenDom.dom("div>(div.margin_left_20>p>b[*Hey!*]+p[*This is p.*])+div>b[*END*]")
-);
-			</pre>
-		</div>
-		<div id="sample3">
+	ZenDom.dom("div>(div.margin_left_20>(p>b[*Hey!*])+p[*This is p.*])+div>b[**END**]")
+);</pre>
 			<p>And you get:</p>
 		</div>
+		<div id="sample3">
+		</div>
+		<h2>Options</h2>
+		<div id="des4">
+			<p>Set options in this way:</p>
+			<pre>
+ZenDom.config({
+	jQuery:false,  //default
+	debug:false    //default
+});</pre>
+			<h3>jQuery</h3>
+			<p>When <code>jQuery</code> is <code>true</code> and the jQuery library is linked in, the <code>ZenDom.dom</code> function returns a jQuery object. So you can just control it in the jQuery way:</p>
+			<pre>
+//First, config
+ZenDom.config({"jQuery":true});
+//Then
+ZenDom.dom("div[*A jQuery object!*]").appendTo($('#sample4')).hide();</pre>
+			<p>So you get:</p>
+		</div>
+		<div id="sample4"></div>
+		<div id="des5">
+			<p>Well, it is not nothing! The DOM is just hidden, you know that!</p>
+			<h3>debug mode</h3>
+			<p>When <code>debug</code> is <code>true</code>, ZenDom will try (just try) to <code>console.log</code> any error it meets when generating. Remember to set it <code>false</code> before you put it online.</p>
+		</div>
+		<h2>Callback function</h2>
+		<div id="des6">
+			<p>Another parameter of <code>ZenDom.dom</code> is <code>callback</code>. Try this:</p>
+			<pre>ZenDom.dom("div[*A shown jQuery object!*]",function(obj){
+	$("#sample5").append(obj);
+});</pre>
+			<p>And:</p>
+		</div>
+		<div id="sample5"></div>
+		<div id="des7">
+			<p>That's it. Any bug or recommendation, please contact me: monday.chen#gmail.com </p>
+		</div>
 	</div>
-
+	<script type="text/javascript" src="jquery-1.5.1.min.js"></script>
 	<script type="text/javascript" src="ZenDom.js"></script>
 	<script type="text/javascript">
 		document.getElementById('sample1').appendChild(
@@ -72,8 +115,15 @@ document.getElementById('sample2').appendChild(
 			ZenDom.dom("a[title,*Google Search*][href,*http://www.google.com*][target:_blank][Google]")
 		);
 		document.getElementById('sample3').appendChild(
-			ZenDom.dom("div>(div.margin_left_20>p>b[*Hey!*]+p[*This is p.*])+div>b[*END*]")
+			ZenDom.dom("div>(div.margin_left_20>(p>b[*Hey!*])+p[*This is p.*])+div>b[**END**]")
 		);
+
+		ZenDom.config({"jQuery":true});
+		ZenDom.dom("div[*A jQuery object!*]").appendTo($('#sample4')).hide();
+
+		ZenDom.dom("div[*A shown jQuery object!*]",function(obj){
+			$("#sample5").append(obj);
+		});
 
 	</script>
 
